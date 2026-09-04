@@ -2,8 +2,8 @@
   "$schema": "https://raw.githubusercontent.com/jmmarotta/bonsai/main/schemas/config-v1.schema.json",
   "agent": {
     "main": {
-      "model": "codex/gpt-5.6-sol",
-      "effort": "medium",
+      "model": "openai/gpt-6-astra",
+      "effort": "low",
       "serviceTier": "priority"
     },
     "smallModel": {
@@ -22,14 +22,14 @@
         "build": {
           "agent": "bonsai",
           "description": "Use for implementing code changes, running focused verification, and reporting completed work.",
-          "model": "codex/gpt-5.6-sol",
-          "effort": "medium",
+          "model": "openai/gpt-6-astra",
+          "effort": "low",
           "serviceTier": "priority"
         },
         "explore": {
           "agent": "bonsai",
           "description": "Use for focused codebase exploration, tracing behavior, locating relevant files, and reporting implementation findings. Do not modify files.",
-          "model": "codex/gpt-5.6-sol",
+          "model": "openai/gpt-6-astra",
           "effort": "low",
           "serviceTier": "priority"
         },
@@ -43,8 +43,8 @@
         "review-openai": {
           "agent": "bonsai",
           "description": "Use for an independent OpenAI code review focused on correctness bugs, regressions, architectural and call-graph changes, performance and resource-use regressions, A Philosophy of Software Design (APOSD) red flags, design risks, and missing tests.",
-          "model": "codex/gpt-5.6-sol",
-          "effort": "medium",
+          "model": "openai/gpt-6-astra",
+          "effort": "low",
           "serviceTier": "priority"
         },
         "research": {
