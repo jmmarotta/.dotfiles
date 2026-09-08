@@ -2,31 +2,21 @@
 
 Apply *A Philosophy of Software Design* to the repository's concrete design and constraints. Start with purpose and interface, then examine invariants, dependency assumptions, non-obvious choices, and error behavior.
 
-## Visual Explanations
-
-Let diagrams carry the explanation. Add only the prose needed to read them.
-
-Choose the diagram that fits the question:
-
-- **Structure:** modules, boundaries, ownership, and dependencies
-- **Data flow:** where values come from and how they change
-- **Execution flow:** runtime order, branches, exits, errors, and side effects
-- **Call graph:** what can call what and how far a change reaches
-
-When available, use `callstack diff` to find changed paths and `callstack tree`
-to trace call graphs. Check the result against the code before drawing from it.
-
-Keep diagrams focused on the details needed to understand the point. When
-current and planned behavior appear together, mark affected nodes or paths
-with `+` for added, `~` for changed, and `-` for removed.
-
 ## Workflow
 
 For work with material uncertainty, design, or risk, separate research, planning, implementation, and review. Keep each stage as light as the task allows.
 
+These stages organize the work; they are not automatic approval gates. Move between them without asking unless a decision materially changes the agreed outcome, scope, or risk.
+
 ### Research
 
 Define the problem and success criteria enough to bound the investigation. Treat that view as provisional. Inspect relevant code, tests, documentation, and conventions to learn current behavior, constraints, and touch points. Use external research only when needed. Before planning, surface findings that materially change the problem or success criteria.
+
+When available, use `callstack diff` to find changed paths and `callstack tree`
+to trace call relationships. Verify the output against the code before using
+it.
+
+Use the `research` task for web access.
 
 ### Planning
 
@@ -41,12 +31,12 @@ Treat a plan as a concise design narrative followed by the steps needed to deliv
 
 - Inline single-expression helpers that only mirror an underlying API. Add abstractions only when they enforce an invariant, hide non-obvious complexity, or remove duplication callers would otherwise get wrong
 - Avoid speculative fallbacks or defensive branches unless requirements or observed failure modes justify them
-- Avoid the `build` task preset unless explicitly instructed to delegate implementation
+- Delegate implementation only when explicitly instructed by the user
 - When following a persisted plan, update it with completed work and material design changes
 
 ### Review
 
-Run all configured `review-*` task presets in parallel when changes span modules, alter architecture, or carry material correctness, security, or performance risk.
+Run all configured `review-*` task presets in parallel when the change carries material risk. Consider correctness, security, performance, compatibility, and how widely a failure could spread. Mechanical or low-impact changes do not require delegated review.
 
 Review findings are evidence for a decision.
 
@@ -56,6 +46,27 @@ Review findings are evidence for a decision.
 - Verify each finding against the code, requirements, and supported contract. Adopt it when the demonstrated risk justifies the added complexity
 - Prefer the smallest fix that restores the intended behavior or invariant
 - Deduplicate parallel reviews, explain rejected material findings, and rerun checks affected by adopted changes
+
+## Frontend
+
+Use *Refactoring UI* as the default frontend design lens while preserving any existing design system. If none exists, choose an intentional visual direction and load the `frontend-design` skill when needed.
+
+## Commits
+
+Use `mitchelh` commit messages: `<scope>: <concise lowercase description>`
+
+Do not create partial commits or rewrite files only to manufacture intermediate states.
+
+## Worktrees
+
+Create Git worktrees under the primary checkout's `.worktrees/<name>/`. Remove them with `git worktree remove`.
+
+## Overfitting
+
+Code and artifacts must make sense without conversation or pull-request history.
+
+- Rewrite names or comments that rely on hidden context using the codebase's vocabulary
+- Do not preserve compatibility with unshipped code that existed only earlier in the current branch. Delete old signatures, aliases, and data shapes; update their callers
 
 ## Artifact Setup
 
@@ -82,38 +93,8 @@ The issue body is a concise, durable account of the work. Write for a reader wit
 - Use a supporting document only when lasting detail or evidence would make the issue hard to scan. Store it beside the issue with a short, kebab-case name. Summarize its conclusion and link to it from the issue
 - Write a supporting document only when an issue already covers the work
 - Revise the issue in place as the work changes
-- After materially changing a plan or design, report the issue path and pause for review
+- Pause for approval when a proposed change would alter the agreed outcome, scope, or risk. Otherwise, proceed within the approved scope and record material design changes in the issue
 
 ### Scratch Work
 
 Use the repository's `.tmp` directory for throwaway files. Do not create an issue solely for scratch work.
-
-## Frontend
-
-Use *Refactoring UI* as the default frontend design lens while preserving any existing design system. If none exists, choose an intentional visual direction and load the `frontend-design` skill when needed.
-
-## Commits
-
-Use `mitchelh` commit messages: `<scope>: <concise lowercase description>`
-
-Do not create partial commits or rewrite files only to manufacture intermediate states.
-
-## Worktrees
-
-Create Git worktrees under the primary checkout's `.worktrees/<name>/`. Remove them with `git worktree remove`.
-
-## Word Choice
-
-Apply Orwell's rules throughout: use short, familiar words, cut needless words, prefer active voice, and avoid jargon when plain words work.
-
-### Names
-
-- Use one word per concept and one concept per word
-- Cut words the context already carries
-
-## Overfitting
-
-Code and artifacts must make sense without conversation or pull-request history.
-
-- Rewrite names or comments that rely on hidden context using the codebase's vocabulary
-- Do not preserve compatibility with unshipped code that existed only earlier in the current branch. Delete old signatures, aliases, and data shapes; update their callers
