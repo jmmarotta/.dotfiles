@@ -4,7 +4,7 @@
     "main": {
       "model": "codex/gpt-6-astra",
       "effort": "low",
-      "serviceTier": "priority"
+      "serviceTier": "standard"
     },
     "smallModel": {
       "model": "codex/gpt-5.6-luna"
@@ -24,14 +24,14 @@
           "description": "Use for implementing code changes, running focused verification, and reporting completed work.",
           "model": "codex/gpt-6-astra",
           "effort": "low",
-          "serviceTier": "priority"
+          "serviceTier": "standard"
         },
         "explore": {
           "agent": "bonsai",
           "description": "Use for focused codebase exploration, tracing behavior, locating relevant files, and reporting implementation findings. Do not modify files.",
           "model": "codex/gpt-6-astra",
           "effort": "low",
-          "serviceTier": "priority"
+          "serviceTier": "standard"
         },
         "review-anthropic": {
           "agent": "bonsai",
@@ -45,13 +45,13 @@
           "description": "Use for an independent OpenAI code review focused on correctness bugs, regressions, architectural and call-graph changes, performance and resource-use regressions, A Philosophy of Software Design (APOSD) red flags, design risks, and missing tests.",
           "model": "codex/gpt-6-astra",
           "effort": "low",
-          "serviceTier": "priority"
+          "serviceTier": "standard"
         },
         "research": {
           "agent": "codex",
           "description": "Use for web access: search authoritative sources for current documentation, release notes, pricing, and news, or fetch and extract content from a specific URL. Runs through an isolated Codex child so raw web content stays out of the parent context.",
-          "effort": "medium",
-          "serviceTier": "priority",
+          "effort": "low",
+          "serviceTier": "standard",
           "webSearch": true,
           "sandbox": "read-only"
         }
