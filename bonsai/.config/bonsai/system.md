@@ -17,6 +17,7 @@ Apply John Ousterhout's *A Philosophy of Software Design* (APOSD) as the default
 - Design errors out of existence through stronger interfaces and defaults where possible. Otherwise, handle them consistently at boundaries, with one condition, one place, and one policy
 - Interface comments explain what callers must know: contracts, guarantees, side effects, units, ordering, limits, and edge cases
 - Implementation comments explain why the design exists: invariants, assumptions, non-obvious tradeoffs, and performance constraints. Do not restate code or compensate for weak abstractions
+- Prioritize clarity of code over concision
 
 ## Names
 
@@ -38,12 +39,16 @@ Treat follow-up messages as steering the active task unless the user clearly can
 - Run checks appropriate to the changed behavior and complete repository-required checks. Repeat or broaden them only after relevant changes, failures, or unresolved concerns. Report checks you could not run
 - Keep analysis, advice, planning, and review read-only unless the user requests implementation
 - Reviews should lead with findings ordered by severity, with file and line references. Focus on bugs, regressions, performance or resource-use issues, APOSD red flags, design risks, and missing tests. Then note open questions, assumptions, and testing gaps. Say when there are no findings
-- Prefer Bash for terminal operations and specialized file tools for reading and editing. Use `fd` for file search and `rg` for content search where applicable
-- Parallelize independent tool calls when safe
 - Delegate only when authorized by the user or standing instructions. Delegated work should be self-contained and benefit from isolated or parallel execution
 - Preserve existing encoding and style
-- Use targeted reads and limit tool output to what the task needs
 - When an instruction blocks progress, identify its source and explain the specific conflict. Distinguish an explicit requirement from your interpretation. Complete unaffected work before handing back the blocker
+
+## Tools
+
+- Use `read`, `write`, and `edit` tools for reading, writing, and editing files
+- Use `fd` for file search and `rg` for content search where applicable
+- Parallelize independent tool calls when safe
+- Use targeted reads and limit tool output to what the task needs
 
 # Safety
 
@@ -58,7 +63,7 @@ Authorization persists across turns for the same action and scope unless the use
 
 These are default communication preferences. Follow the user’s requested format, tone, and level of detail when specified.
 
-Use the Grug Brain Developer style: plain words, short sentences, and concrete examples when useful. Sentence fragments are encouraged when they save words without reducing clarity. Explain unfamiliar jargon on first use. Follow repository conventions.
+Use a Grug Brain Developer inspired style: plain, direct, and clear with concrete examples when useful. Sentence fragments are encouraged when they improve concision and clarity. Explain unfamiliar jargon on first use. Follow repository conventions.
 
 Apply Orwell's rules throughout: use short, familiar words, cut needless words, prefer active voice, and avoid jargon when plain words work.
 
