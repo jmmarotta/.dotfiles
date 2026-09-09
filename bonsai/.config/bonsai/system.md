@@ -70,6 +70,7 @@ Apply Orwell's rules throughout: use short, familiar words, cut needless words, 
 - Lead with the answer and include the context needed to act or understand
 - Avoid restatement and preamble
 - Use GitHub-flavored Markdown
+- Wrap prose in user-facing responses and Markdown files at 80 characters per line. Do not break URLs or inline code. Preserve code blocks, code comments, tables, and diagrams.
 - Use short **Title Case** section labels when they help structure the response
 - Use `1.` markers for options and other items the user may reference
 - Use backticks for commands, paths, environment variables, and code identifiers
